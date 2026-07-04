@@ -1,0 +1,37 @@
+-Lleven a cabo la entrevista inicial de requerimientos con su Junta Directiva (15 min en clase) 
+para extraer atributos de calidad y reglas críticas.
+
+	Listo
+
+- Definan y justifiquen la selección del Estilo Arquitectónico Macro (ej. Monolito Modular, 
+Microservicios, Event-Driven, SOA).
+
+
+
+Compas, les comparto una propuesta para la parte de la app de escritorio que van a usar los médicos en los EBAIS.
+La idea es que sea una aplicación instalable directamente en las computadoras de los consultorios, no algo que dependa de abrir el navegador ni de tener internet. Esto es clave porque el RFP nos exige que el médico pueda leer el historial del dispositivo del paciente en menos de 2 segundos, incluso si no hay conectividad ni electricidad estable en la zona (piensen en el caso de un EBAIS en Hojancha, Guanacaste).
+El punto técnico importante es que esta app debe traer todo lo que necesita incluido en el instalador (lo que se llama "self-contained"), para que no dependamos de que cada computadora tenga preinstalado algún componente específico. Así evitamos el problema típico de "aquí no instaló porque falta tal librería". Esto nos da compatibilidad amplia con Windows 10 en adelante, sin sorpresas por equipo.
+Para la parte de datos locales, usaría una base de datos SQLite embebida, solo para guardar configuración y registros del historial, y la conexión al dispositivo médico sería directa por USB o Bluetooth.
+También propongo un portal web aparte, donde los departamentos de TI de cada centro puedan bajar el instalador más reciente cuando lo necesiten, para no depender de que alguien vaya físicamente a instalar o actualizar.
+Descartamos usar una PWA (por problemas de soporte de Bluetooth/USB en navegadores) y un cliente web normal (porque necesita internet para funcionar, y eso rompe el requisito de los 2 segundos sin red).
+
+
+- Elaboren el modelo C4 Nivel 1 (Diagrama de Contexto del Sistema) detallando las 
+interacciones con usuarios y sistemas externos.
+
+
+
+
+
+
+
+- Documenten las decisiones iniciales mediante al menos 2 ADRs en formato estándar
+
+
+
+
+- referencias.
+
+ * https://www.lasssim.com/architecture-decision-records-example/
+ * https://c4model.com/introduction
+ 
