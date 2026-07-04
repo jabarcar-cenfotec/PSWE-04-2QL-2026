@@ -1,0 +1,1 @@
+Documentos que generados en respuesta como grupo contratado. 
