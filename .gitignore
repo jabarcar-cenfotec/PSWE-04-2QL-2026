@@ -1,0 +1,17 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Office temporales
+~$*.docx
+~$*.xlsx
+~$*.pptx
+*.tmp
+
+# Windows
+ehthumbs.db
+[Dd]esktop.ini
+
+# Archivos de sistema
+*.lnk
