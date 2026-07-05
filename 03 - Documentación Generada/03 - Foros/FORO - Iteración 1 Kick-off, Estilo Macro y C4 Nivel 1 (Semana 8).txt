@@ -13,6 +13,7 @@ La idea es que sea una aplicación instalable directamente en las computadoras d
 El punto técnico importante es que esta app debe traer todo lo que necesita incluido en el instalador (lo que se llama "self-contained"), para que no dependamos de que cada computadora tenga preinstalado algún componente específico. Así evitamos el problema típico de "aquí no instaló porque falta tal librería". Esto nos da compatibilidad amplia con Windows 10 en adelante, sin sorpresas por equipo.
 Para la parte de datos locales, usaría una base de datos SQLite embebida, solo para guardar configuración y registros del historial, y la conexión al dispositivo médico sería directa por USB o Bluetooth.
 También propongo un portal web aparte, donde los departamentos de TI de cada centro puedan bajar el instalador más reciente cuando lo necesiten, para no depender de que alguien vaya físicamente a instalar o actualizar.
+Todo esto por debajo a un CORE, que seria el centro de la plataforma en donde tenemos conectados los servicios EDUS, a donde la app se conecta y tenemos los Hooks y las funciones de eventos adicionales. 
 Descartamos usar una PWA (por problemas de soporte de Bluetooth/USB en navegadores) y un cliente web normal (porque necesita internet para funcionar, y eso rompe el requisito de los 2 segundos sin red).
 
 
