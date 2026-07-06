@@ -17,6 +17,26 @@ Todo esto por debajo a un CORE, que seria el centro de la plataforma en donde te
 Descartamos usar una PWA (por problemas de soporte de Bluetooth/USB en navegadores) y un cliente web normal (porque necesita internet para funcionar, y eso rompe el requisito de los 2 segundos sin red).
 
 
+Estoy de acuerdo con la propuesta inicial, lo del app de escritorio está excelente para que funcione en esos entornos sin conexión y rápidamente
+
+Para complementar la propuesta, propongo lo siguiente:
+
+- El core central de la plataforma sería la Plataforma de Intermediación Biomédica, donde estaría la lógica principal de procesamiento, validación, deduplicación, alertas, auditoría e integración. (Tenemos que confirmar que tanta de esta validación tenemos que realizar y que tanta hace el sistema EDUS)
+- Dentro del core se podría usar una arquitectura basada en eventos, apoyada por un bus de eventos o message broker interno, para manejar flujos como lectura recibida, lectura validada, umbral superado, alerta generada y lectura lista para EDUS.
+- Para la conexión con EDUS, se podría usar una integración SOA, por medio de los servicios institucionales o mecanismos de mensajería existentes de la CCSS como lo indica el RFP que tiene que ser.
+
+Se selecciona una arquitectura orientada a eventos porque el sistema debe procesar lecturas en tiempo real, lecturas acumuladas, registros tardíos y alertas críticas
+con prioridad, sin bloquear todo el flujo principal. Se manejarían eventos como: 
+`LecturaRecibida`, `LecturaValidada`, `UmbralSuperado`, `AlertaGenerada` y `LecturaListaParaEDUS`
+
+Se descarta un monolito modular porque, aunque simplifica el despliegue inicial, obligaría a escalar y procesar en bloque flujos con criticidad distinta, 
+como sincronización normal, alertas y auditoría. Ademas es importante que el sistema sea escalable.
+
+Se descartan microservicios porque agregan mayor complejidad operativa, despliegue distribuido y consistencia eventual 
+innecesaria para un piloto institucional controlado.
+
+
+
 - Elaboren el modelo C4 Nivel 1 (Diagrama de Contexto del Sistema) detallando las 
 interacciones con usuarios y sistemas externos.
 
